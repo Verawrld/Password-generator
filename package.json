@@ -1,0 +1,17 @@
+{
+  "name": "fullstack-qap-1",
+  "version": "1.0.0",
+  "description": "Program to generate a password for users.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "password-generator": "index.js"
+  },
+  "author": "Donovan Head",
+  "license": "MIT",
+  "dependencies": {
+    "fullstack-qap-1": "file:"
+  }
+}
