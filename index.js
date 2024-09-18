@@ -14,10 +14,11 @@ Options:
   --length [number]        Set the length of the password (default: 8)
   --numbers                Include numbers in the password
   --uppercase              Include uppercase letters in the password
+  --symbols                Include symbols in the password
   --help                   Display this help message
 
 Example:
-  password-generator --length 12 --numbers --uppercase 
+  password-generator --length 12 --numbers --uppercase --symbols  
   `);
 }
 
@@ -26,17 +27,25 @@ Example:
  * @param {number} length - The length of the password
  * @param {boolean} includeNumbers - Whether to include numbers
  * @param {boolean} includeUppercase - Whether to include uppercase letters
+ * * @param {boolean} includeSymbols - Whether to include symbols
  * @returns {string} - The generated password
  */
 
-function generatePassword(length, includeNumbers, includeUppercase) {
+function generatePassword(
+  length,
+  includeNumbers,
+  includeUppercase,
+  includeSymbols
+) {
   const lowercase = "abcdefghijklmnopqrstuvwxyz";
   const numbers = "0123456789";
   const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const symbols = "!@#$%^&*()_+[]{}|;:,.<>?";
 
   let characters = lowercase;
   if (includeNumbers) characters += numbers;
   if (includeUppercase) characters += uppercase;
+  if (includeSymbols) characters += symbols;
 
   let password = "";
   for (let i = 0; i < length; i++) {
@@ -56,6 +65,7 @@ function passwordGenerator() {
   let length = 8;
   let includeNumbers = false;
   let includeUppercase = false;
+  let includeSymbols = false;
 
   for (let i = 0; i < args.length; i++) {
     switch (args[i]) {
@@ -76,14 +86,21 @@ function passwordGenerator() {
       case "--uppercase":
         includeUppercase = true;
         break;
-
+      case "--symbols":
+        includeSymbols = true;
+        break;
       default:
         console.error(`Unknown option: ${args[i]}`);
         return;
     }
   }
 
-  const password = generatePassword(length, includeNumbers, includeUppercase);
+  const password = generatePassword(
+    length,
+    includeNumbers,
+    includeUppercase,
+    includeSymbols
+  );
   console.log(`Generated Password: ${password}`);
 }
 
